@@ -3,159 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Website</title>
+    <title>My Enhanced Website</title>
     <style>
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            transition: var(--transition);
         }
 
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        /* Header */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%), 
-                        url('images/hero-bg.jpg') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
-            color: white;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
             margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: rgba(255,255,255,0.2);
-            border: 2px solid white;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-
-        .btn:hover {
-            background: white;
-            color: #667eea;
-            transform: translateY(-2px);
-        }
-
-        main {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-            text-align: center;
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #2563eb;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border-radius: var(--border-radius);
+            position: relative;
             overflow: hidden;
         }
 
-        .card:hover {
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Theme Toggle */
+        .theme-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Image Gallery */
+        .image-section {
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .main-image {
+            max-width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .main-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
             transform: translateY(-5px);
         }
 
-        .card img {
+        .gallery-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            transition: var(--transition);
         }
 
-        .card h3 {
-            color: #2563eb;
-            margin-bottom: 1rem;
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
         }
 
-        footer {
-            background: #1f2937;
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        /* Interactive Counter */
+        .counter-section {
+            background: var(--bg-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
             text-align: center;
-            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .counter-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .counter-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .counter-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            min-width: 100px;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+            width: 0%;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        /* Fun Facts */
+        .fun-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .fact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .fact-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Dark theme */
+        body.dark-theme {
+            --text-color: #ffffff;
+            --bg-color: #2c3e50;
+            --card-bg: #34495e;
+            --secondary-color: #ecf0f1;
+        }
+
+        body.dark-theme .container {
+            background: var(--card-bg);
+        }
+
+        body.dark-theme .counter-section {
+            background: #2c3e50;
+        }
+
+        body.dark-theme .fact-card {
+            background: #2c3e50;
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: var(--border-radius);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close:hover {
+            color: var(--accent-color);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeInUp {
@@ -169,112 +422,438 @@
             }
         }
 
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .container {
+                margin: 10px;
+                padding: 15px;
             }
-            
-            .hero-content h1 {
+
+            h1 {
                 font-size: 2rem;
             }
-            
-            .grid {
-                grid-template-columns: 1fr;
+
+            .counter-container {
+                gap: 1rem;
             }
+
+            .counter-display {
+                font-size: 2rem;
+            }
+
+            .theme-controls {
+                position: relative;
+                top: auto;
+                right: auto;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--accent-color);
+            z-index: 1001;
+            transition: width 0.1s ease;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">WebSite</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <div class="theme-controls">
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+    </div>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Welcome to Our Website</h1>
-            <p>Creating amazing digital experiences</p>
-            <a href="#about" class="btn">Get Started</a>
+    <div class="container">
+        <header>
+            <h1>Hello World</h1>
+            <p class="subtitle">Welcome to my enhanced interactive website</p>
+        </header>
+
+        <main>
+            <section class="image-section">
+                <h2 class="section-title">📸 Featured Image</h2>
+                <div class="image-container">
+                    <img src="https://picsum.photos/800/400?random=1" 
+                         alt="A beautiful random landscape" 
+                         class="main-image"
+                         onclick="openModal(this)" />
+                    <p><em>A stunning landscape from Picsum Photos - Click to enlarge!</em></p>
+                </div>
+
+                <div class="image-gallery">
+                    <div class="gallery-item" onclick="openModal(this.querySelector('img'))">
+                        <img src="https://picsum.photos/300/200?random=2" alt="Nature" class="gallery-image">
+                        <div class="image-overlay">
+                            <h3>Nature</h3>
+                            <p>Beautiful natural scenery</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openModal(this.querySelector('img'))">
+                        <img src="https://picsum.photos/300/200?random=3" alt="Architecture" class="gallery-image">
+                        <div class="image-overlay">
+                            <h3>Architecture</h3>
+                            <p>Modern architectural design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openModal(this.querySelector('img'))">
+                        <img src="https://picsum.photos/300/200?random=4" alt="Urban" class="gallery-image">
+                        <div class="image-overlay">
+                            <h3>Urban</h3>
+                            <p>City life and culture</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openModal(this.querySelector('img'))">
+                        <img src="https://picsum.photos/300/200?random=5" alt="Abstract" class="gallery-image">
+                        <div class="image-overlay">
+                            <h3>Abstract</h3>
+                            <p>Creative abstract art</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="counter-section">
+                <h2 class="section-title">🎯 Interactive Counter</h2>
+                <p>Test out this interactive counter with persistent storage!</p>
+                <div class="counter-container">
+                    <button class="counter-btn" id="decrementBtn" onclick="updateCounter(-1)">−</button>
+                    <div class="counter-display" id="counterDisplay">0</div>
+                    <button class="counter-btn" id="incrementBtn" onclick="updateCounter(1)">+</button>
+                </div>
+                <button class="theme-toggle" onclick="resetCounter()" style="margin-top: 1rem;">🔄 Reset</button>
+            </section>
+
+            <section class="progress-section">
+                <h2 class="section-title">📊 Dynamic Progress</h2>
+                <p>Watch this progress bar grow based on your counter value!</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressText">Progress: 0%</p>
+            </section>
+
+            <section class="fun-facts">
+                <div class="fact-card" onclick="animateCard(this)">
+                    <div class="fact-icon">🚀</div>
+                    <div class="fact-number" id="visitCount">1</div>
+                    <div>Page Visits</div>
+                </div>
+                <div class="fact-card" onclick="animateCard(this)">
+                    <div class="fact-icon">⏱️</div>
+                    <div class="fact-number" id="timeSpent">0</div>
+                    <div>Seconds Spent</div>
+                </div>
+                <div class="fact-card" onclick="animateCard(this)">
+                    <div class="fact-icon">🖱️</div>
+                    <div class="fact-number" id="clickCount">0</div>
+                    <div>Total Clicks</div>
+                </div>
+                <div class="fact-card" onclick="animateCard(this)">
+                    <div class="fact-icon">🌟</div>
+                    <div class="fact-number">100%</div>
+                    <div>Awesome</div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">✨ About This Website</h2>
+                <p>This enhanced website demonstrates modern web development techniques including:</p>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto; line-height: 2;">
+                    <li>🎨 <strong>Responsive CSS Design</strong> - Beautiful layouts that work on all devices</li>
+                    <li>🌙 <strong>Dark/Light Theme Toggle</strong> - Switch between themes with persistence</li>
+                    <li>🖼️ <strong>Interactive Image Gallery</strong> - Click images to view in full-screen modal</li>
+                    <li>⚡ <strong>Dynamic JavaScript Features</strong> - Live counters, progress bars, and animations</li>
+                    <li>💾 <strong>Local Storage</strong> - Your preferences and data persist between visits</li>
+                    <li>📱 <strong>Mobile-First Design</strong> - Optimized for both desktop and mobile devices</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="">
         </div>
-    </section>
-
-    <main>
-        <section class="section" id="about">
-            <h2>About Us</h2>
-            <div style="display: flex; align-items: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 300px;">
-                    <p style="text-align: left; font-size: 1.1rem;">We are passionate about creating exceptional digital solutions that help businesses grow and succeed in the modern world. Our team combines creativity with technical expertise to deliver outstanding results.</p>
-                </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <img src="images/team.jpg" alt="Team working together" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="services">
-            <h2>Our Services</h2>
-            <div class="grid">
-                <div class="card">
-                    <img src="images/web-design.jpg" alt="Web Design">
-                    <h3>Web Design</h3>
-                    <p>Beautiful, responsive websites that work perfectly on all devices and provide great user experiences.</p>
-                </div>
-                <div class="card">
-                    <img src="images/development.jpg" alt="Development">
-                    <h3>Development</h3>
-                    <p>Custom web applications built with modern technologies and best practices for optimal performance.</p>
-                </div>
-                <div class="card">
-                    <img src="images/seo.jpg" alt="SEO">
-                    <h3>SEO</h3>
-                    <p>Search engine optimization to help your website rank higher and attract more organic traffic.</p>
-                </div>
-                <div class="card">
-                    <img src="images/support.jpg" alt="Support">
-                    <h3>Support</h3>
-                    <p>Ongoing maintenance and support to keep your website running smoothly and up-to-date.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="contact">
-            <h2>Contact Us</h2>
-            <p>Ready to start your project? Get in touch with us today!</p>
-            <div style="margin-top: 2rem;">
-                <a href="mailto:hello@website.com" class="btn" style="color: #2563eb; border-color: #2563eb;">Email Us</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Website. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Global variables
+        let counter = parseInt(localStorage.getItem('websiteCounter') || '0');
+        let visitCount = parseInt(localStorage.getItem('visitCount') || '0') + 1;
+        let clickCount = parseInt(localStorage.getItem('clickCount') || '0');
+        let startTime = Date.now();
+
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebsite();
+            updateCounterDisplay();
+            updateProgressBar();
+            trackTime();
+            trackClicks();
+            initScrollIndicator();
+            
+            // Save visit count
+            localStorage.setItem('visitCount', visitCount.toString());
+            document.getElementById('visitCount').textContent = visitCount;
+            
+            console.log('🎉 Website loaded successfully!');
+            console.log('💡 Try the interactive features:');
+            console.log('   • Toggle dark/light theme');
+            console.log('   • Click images to enlarge');
+            console.log('   • Use the counter');
+            console.log('   • Watch the progress bar grow!');
         });
 
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
+        // Initialize website settings
+        function initializeWebsite() {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.getElementById('themeToggle').innerHTML = '☀️ Light Mode';
+            }
+        }
+
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            
+            this.innerHTML = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // Add animation effect
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Counter functionality
+        function updateCounter(change) {
+            counter += change;
+            localStorage.setItem('websiteCounter', counter.toString());
+            updateCounterDisplay();
+            updateProgressBar();
+            
+            // Animate counter
+            const display = document.getElementById('counterDisplay');
+            display.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                display.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        function updateCounterDisplay() {
+            const display = document.getElementById('counterDisplay');
+            display.textContent = counter;
+            
+            // Color coding
+            if (counter > 0) {
+                display.style.color = '#27ae60';
+            } else if (counter < 0) {
+                display.style.color = '#e74c3c';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                display.style.color = '#2c3e50';
+            }
+        }
+
+        function resetCounter() {
+            counter = 0;
+            localStorage.setItem('websiteCounter', '0');
+            updateCounterDisplay();
+            updateProgressBar();
+            
+            // Fun animation
+            const display = document.getElementById('counterDisplay');
+            display.style.animation = 'bounce 0.6s ease';
+            setTimeout(() => {
+                display.style.animation = '';
+            }, 600);
+        }
+
+        // Progress bar functionality
+        function updateProgressBar() {
+            const maxValue = 20;
+            const percentage = Math.min(Math.max((counter / maxValue) * 100, 0), 100);
+            
+            document.getElementById('progressFill').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = `Progress: ${Math.round(percentage)}%`;
+        }
+
+        // Image modal functionality
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
             }
         });
+
+        // Card animation
+        function animateCard(card) {
+            card.style.animation = 'bounce 0.6s ease';
+            setTimeout(() => {
+                card.style.animation = '';
+            }, 600);
+        }
+
+        // Track time spent on page
+        function trackTime() {
+            setInterval(() => {
+                const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+                document.getElementById('timeSpent').textContent = timeSpent;
+            }, 1000);
+        }
+
+        // Track clicks
+        function trackClicks() {
+            document.addEventListener('click', function() {
+                clickCount++;
+                localStorage.setItem('clickCount', clickCount.toString());
+                document.getElementById('clickCount').textContent = clickCount;
+            });
+        }
+
+        // Scroll indicator
+        function initScrollIndicator() {
+            window.addEventListener('scroll', function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('scrollIndicator').style.width = scrolled + '%';
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowUp':
+                    e.preventDefault();
+                    updateCounter(1);
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    updateCounter(-1);
+                    break;
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 't':
+                case 'T':
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        document.getElementById('themeToggle').click();
+                    }
+                    break;
+                case 'r':
+                case 'R':
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        resetCounter();
+                    }
+                    break;
+            }
+        });
+
+        // Easter egg - Double click for confetti effect
+        let clickTimeout;
+        let clickCounter = 0;
+
+        document.addEventListener('click', function() {
+            clickCounter++;
+            
+            clearTimeout(clickTimeout);
+            clickTimeout = setTimeout(() => {
+                if (clickCounter >= 10) {
+                    // Trigger confetti effect
+                    document.body.style.animation = 'rainbow 2s ease';
+                    
+                    // Create temporary rainbow animation
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes rainbow {
+                            0% { filter: hue-rotate(0deg) saturate(1.5); }
+                            25% { filter: hue-rotate(90deg) saturate(1.5); }
+                            50% { filter: hue-rotate(180deg) saturate(1.5); }
+                            75% { filter: hue-rotate(270deg) saturate(1.5); }
+                            100% { filter: hue-rotate(360deg) saturate(1.5); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    setTimeout(() => {
+                        document.body.style.animation = '';
+                        document.head.removeChild(style);
+                    }, 2000);
+                    
+                    console.log('🎉 Congratulations! You found the easter egg!');
+                    console.log('🌈 You clicked 10 times in 3 seconds - enjoy the rainbow!');
+                    
+                    clickCounter = 0;
+                }
+            }, 3000);
+        });
+
+        // Console welcome message
+        console.log(`
+        🎨 Welcome to the Enhanced Website!
+        
+        ⌨️  Keyboard Shortcuts:
+           • ↑/↓ Arrow keys: Increment/Decrement counter  
+           • Escape: Close modal
+           • Ctrl+T: Toggle theme
+           • Ctrl+R: Reset counter
+           
+        🎯 Try clicking 10 times in 3 seconds for a surprise!
+        `);
     </script>
 </body>
 </html>
