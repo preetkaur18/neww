@@ -62,7 +62,8 @@
 
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%), 
+                        url('images/hero-bg.jpg') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -130,10 +131,19 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
         }
 
         .card h3 {
@@ -198,25 +208,36 @@
     <main>
         <section class="section" id="about">
             <h2>About Us</h2>
-            <p>We are passionate about creating exceptional digital solutions that help businesses grow and succeed in the modern world.</p>
+            <div style="display: flex; align-items: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <p style="text-align: left; font-size: 1.1rem;">We are passionate about creating exceptional digital solutions that help businesses grow and succeed in the modern world. Our team combines creativity with technical expertise to deliver outstanding results.</p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="images/team.jpg" alt="Team working together" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                </div>
+            </div>
         </section>
 
         <section class="section" id="services">
             <h2>Our Services</h2>
             <div class="grid">
                 <div class="card">
+                    <img src="images/web-design.jpg" alt="Web Design">
                     <h3>Web Design</h3>
                     <p>Beautiful, responsive websites that work perfectly on all devices and provide great user experiences.</p>
                 </div>
                 <div class="card">
+                    <img src="images/development.jpg" alt="Development">
                     <h3>Development</h3>
                     <p>Custom web applications built with modern technologies and best practices for optimal performance.</p>
                 </div>
                 <div class="card">
+                    <img src="images/seo.jpg" alt="SEO">
                     <h3>SEO</h3>
                     <p>Search engine optimization to help your website rank higher and attract more organic traffic.</p>
                 </div>
                 <div class="card">
+                    <img src="images/support.jpg" alt="Support">
                     <h3>Support</h3>
                     <p>Ongoing maintenance and support to keep your website running smoothly and up-to-date.</p>
                 </div>
@@ -237,7 +258,6 @@
     </footer>
 
     <script>
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -247,7 +267,6 @@
             });
         });
 
-        // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
